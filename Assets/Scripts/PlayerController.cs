@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
 	public GameObject winTextObject;
 	
     private Rigidbody rb;
+    private int totalPickups;
 	private int count;
     private float movementX;
     private float movementY;
@@ -19,9 +20,9 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();        
         count = 0;
-        
+        totalPickups = GameObject.FindGameObjectsWithTag("PickUp").Length;
         SetCountText();
         winTextObject.SetActive(false);
     }
@@ -37,7 +38,7 @@ public class PlayerController : MonoBehaviour
     private void SetCountText()
     {
 		countText.text = "Count: " + count.ToString();
-		if(count >= 12)
+		if(count >= totalPickups)
 		{
 			winTextObject.SetActive(true);
 		}
